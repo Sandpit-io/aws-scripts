@@ -7,7 +7,7 @@
 # Licence:  copyleft free software
 #--------------------------------------------
 #
-# Many thanks to: 
+# Many thanks to:
 # http://blog.celingest.com/en/2014/02/12/new-ses-endpoints-creating-ses-credentials-iam-users/
 
 # Check for OpenSSL installation, exit if not present
@@ -38,7 +38,6 @@ SignInBytes=$(echo -n "$MSG"|openssl dgst -sha256 -hmac "$IAMSECRET" -binary);
 SignAndVer=""$VerInBytes""$SignInBytes"";
 SmtpPass=$(echo -n "$SignAndVer"|base64);
 
-echo "SMTP User: ""$IAMUSER";
-echo "SMTP Pass: ""$SmtpPass";
+echo "{\"user\": \"""$IAMUSER""\", \"pass\": \"""$SmtpPass""\"}";
 
 exit 0
